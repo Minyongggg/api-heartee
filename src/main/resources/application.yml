@@ -1,9 +1,27 @@
 spring:
   profiles:
+    active: local # default
     include:
       - db
+      - jwt
+      - oauth
+      - aws
+      - gpt
+#      - log
 
-  logging:
-    level:
-      org.hibernate.SQL: debug
-      org.hibernate.type: trace
+url:
+  cors-allow: http://localhost:3000
+
+---
+spring.config.activate.on-profile: "local"
+url:
+  client:
+    root: http://localhost:3000
+
+---
+spring.config.activate.on-profile: "dev"
+url:
+  client:
+    root: http://localhost:3000
+
+
